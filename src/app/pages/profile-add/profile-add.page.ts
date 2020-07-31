@@ -1,3 +1,5 @@
+
+
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
@@ -10,15 +12,16 @@ import { tap, finalize } from 'rxjs/operators';
 import * as firebase from 'firebase/app';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { DataAccessService } from 'src/app/services/data-access.service';
+import { Router } from '@angular/router';
 @Component({
-  selector: 'app-my-listings-add',
-  templateUrl: './my-listings-add.page.html',
-  styleUrls: ['./my-listings-add.page.scss'],
+  selector: 'app-profile-add',
+  templateUrl: './profile-add.page.html',
+  styleUrls: ['./profile-add.page.scss'],
 })
-export class MyListingsAddPage implements OnInit {
+export class ProfileAddPage implements OnInit {
 
   listing_form: FormGroup;
-  user; 
+  user;
   photo: SafeResourceUrl = "../../assets/image/user.png";
   profilePhoto: string;
   downloadUrl: string;
@@ -46,6 +49,7 @@ export class MyListingsAddPage implements OnInit {
     isUploaded:boolean;
   
   constructor(
+    private router : Router,
     private authSvc:AuthenticationService,
     private util:UtilService,
     private formBuilder:FormBuilder,
@@ -61,13 +65,13 @@ export class MyListingsAddPage implements OnInit {
 
     this.listing_form = this.formBuilder.group({
       
-      title: new FormControl('', Validators.compose([
+      firstname: new FormControl('', Validators.compose([
         Validators.required,
       ])),
-      description: new FormControl('', Validators.compose([
+      lastname: new FormControl('', Validators.compose([
         Validators.required
       ])),
-      price: new FormControl('', Validators.compose([
+      mnumber: new FormControl('', Validators.compose([
         Validators.required
       ])),
     });
@@ -210,24 +214,28 @@ export class MyListingsAddPage implements OnInit {
     return   new Blob(byteArrays, {type: contentType});
   }
 
+  
+    
+  
+
 
   onClickSave(){
+    
     console.log(this.downloadUrl)
     if(this.downloadUrl){
-      let listing ={
-        title:this.listing_form.value.title,
-        description:this.listing_form.value.description,
-        price:this.listing_form.value.price, 
+      let details ={
+        firstname:this.listing_form.value.firstname,
+        lastname:this.listing_form.value.lastname,
+        mnumber:this.listing_form.value.mnumber, 
         photoUrl: this.downloadUrl
       }
-      console.log(this.user.uid, listing)
-      this.dataSvc.addAllListing(listing);
-      this.dataSvc.addListing(this.user.uid, listing).then(()=>{
-        this.util.toast('Listing has been successfully added!', 'success', 'bottom');
+      console.log(this.user.uid, details)
+      this.dataSvc.addProfile(this.user.uid, details).then(()=>{
+        this.util.toast('Changes saved!', 'success', 'bottom');
       })
       .catch(err => {
         //console.log(err);
-        this.util.errorToast('Error in adding listing. Please try again!');
+        this.util.errorToast('Error in editing the dtails. Please try again!');
       })
     
     }
@@ -235,6 +243,10 @@ export class MyListingsAddPage implements OnInit {
       this.util.errorToast('Please upload image before saving!');
 
     }
+
+    this.router.navigate(['tabs/profile']);
+
+
   }
 
 

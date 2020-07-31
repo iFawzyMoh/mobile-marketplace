@@ -3,8 +3,36 @@
    
     <ion-title>Home</ion-title>
   </ion-toolbar>
+  <div>
+    <ion-fab vertical="top" horizontal="end" slot="fixed" (click)="SignOut()">
+      <ion-fab-button color="dark">
+        <ion-icon name="log-out"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  
+  </div>
 </ion-header>
 
 <ion-content>
+  
+
+  <div class="main_content_div">
+   
+
+    <div class="card_div2" *ngFor="let item of data">
+      <div class="tymbooker_image" 
+        [style.backgroundImage]="'url(' +item.photoUrl+ ')'"></div>
+   
+
+
+
+      <div style="padding-left: 10px;">
+        <ion-label class="tymbooker_name">{{item.title}}</ion-label>
+        <ion-label class="date">{{item.description}}</ion-label>
+        <ion-label class="date">{{item.price}}</ion-label>
+      </div>
+    </div>
+
+  </div>
 
 </ion-content>

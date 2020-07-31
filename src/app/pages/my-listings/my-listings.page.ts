@@ -29,6 +29,10 @@ export class MyListingsPage implements OnInit {
   ngOnInit() {
   }
 
+  SignOut(){
+    this.authSvc.SignOut();
+  }
+
   addNewListing(){
     this.router.navigate(['add-listing']);
   }

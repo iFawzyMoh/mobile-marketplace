@@ -3,16 +3,16 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
-  firebaseConfig: {
-    apiKey: "AIzaSyAryBU__k5xUNSKst9H4pdHibQA_-dwgAM",
-    authDomain: "mobile-marketplace-5c7f0.firebaseapp.com",
-    databaseURL: "https://mobile-marketplace-5c7f0.firebaseio.com",
-    projectId: "mobile-marketplace-5c7f0",
-    storageBucket: "mobile-marketplace-5c7f0.appspot.com",
-    messagingSenderId: "1093158737254",
-    appId: "1:1093158737254:web:5b5767b8986a13f0e2a4a7",
-    measurementId: "G-Z84LS2KSMJ"
+  production: true,
+  firebaseConfig : {
+    apiKey: "AIzaSyBG9_lF8PB0mMbPUpF9Tk6oiFj3BOQ7oho",
+    authDomain: "mobile-marketplace-c1a09.firebaseapp.com",
+    databaseURL: "https://mobile-marketplace-c1a09.firebaseio.com",
+    projectId: "mobile-marketplace-c1a09",
+    storageBucket: "mobile-marketplace-c1a09.appspot.com",
+    messagingSenderId: "460715019620",
+    appId: "1:460715019620:web:1808f6409c598db9f2be71",
+    measurementId: "G-T5H6KHPXNM"
   }
 };
 

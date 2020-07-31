@@ -3,8 +3,38 @@
    
     <ion-title>Profile</ion-title>
   </ion-toolbar>
+  <div>
+    <ion-fab vertical="top" horizontal="end" slot="fixed" (click)="SignOut()">
+      <ion-fab-button color="dark">
+        <ion-icon name="log-out"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  
+  </div>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding">
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="addProfile()">
+    <ion-fab-button color="secondary">
+      <ion-icon name="pencil"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 
+  <div class="main_content_div">
+
+    <div class="card_div2" *ngFor="let item of data | slice: -1">
+
+      <div class="tymbooker_image" 
+        [style.backgroundImage]="'url(' +item.photoUrl+ ')'"></div>
+   
+      <div style="padding-left: 10px;">
+        <ion-label class="tymbooker_name">{{item.firstname}}</ion-label>
+        <ion-label class="date">{{item.lastname}}</ion-label>
+        <ion-label class="date">{{item.mnumber}}</ion-label>
+      
+      </div>
+    </div>
+
+  </div>
+  
 </ion-content>
